@@ -1,7 +1,3 @@
-const a = +prompt('Введіть значення а');
-const b = +prompt('Введіть значення b'); 
-const eps = +prompt('Введіть значення eps');
-
 function getX(a, b, eps) {
   const m = (b - a) / 2 + a;
 
@@ -19,4 +15,4 @@ function getX(a, b, eps) {
   }
 }
 
-console.log(getX(a, b, eps));
+module.exports = { getX };
