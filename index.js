@@ -1,26 +1,22 @@
-const xp = +prompt('Введіть значення параметру хp'); // Запрошуємо ввід параметру x початкового
-const xk = +prompt('Введіть значення параметру хk'); // Запрошуємо ввід параметру x кінцевого
-const dx = +prompt('Введіть значення параметру dx'); // Запрошуємо ввід параметру кроку
-const eps = +prompt('Введіть значення параметру eps'); // Запрошуємо ввід параметру точності
+const a = +prompt('Введіть значення а');
+const b = +prompt('Введіть значення b'); 
+const eps = +prompt('Введіть значення eps');
 
-console.log('|\tx\t\t|\tarctg(x)\t\t|\tS\t\t\t\t|\tn\t|');
+function getResult(a, b, eps) {
+  const m = (b - a) / 2 + a;
 
-for (let x = xp; x <= xk && x < -1; x += dx) {
-  
-  let a = -1 / x;
-  let S = a;
-  let n = 0;
+  const resFromA = Math.sin(a) - Math.cos(a);
+  const resFromM = Math.sin(m) - Math.cos(m);
 
-  do {
-    n++;
+  if (resFromM === 0 || b - a < eps) {
+    return m;
+  }
 
-    let R = (1 - 2 * n) / (2 * n * x * x + x * x);
-    
-    a *= R;
-    S += a;
-  } while (Math.abs(a) >= eps);
-
-  let result = -Math.PI / 2 + S;
-
-  console.log(`|\t${x.toFixed(2)}\t|\t${Math.atan(x).toFixed(10)}\t|\t${result.toFixed(10)}\t|\t${n}\t|`);
+  if (resFromM * resFromA < 0) {
+    return getResult(a, m, eps);
+  } else {
+    return getResult(m, b, eps);
+  }
 }
+
+console.log(getResult(a, b, eps));
