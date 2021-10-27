@@ -2,7 +2,11 @@ const a = +prompt('Введіть значення а');
 const b = +prompt('Введіть значення b'); 
 const eps = +prompt('Введіть значення eps');
 
+let deepth = 0;
+
 function getX(a, b, eps) {
+  deepth++;
+
   const m = (b - a) / 2 + a;
 
   const resFromA = Math.sin(a) - Math.cos(a);
@@ -19,4 +23,6 @@ function getX(a, b, eps) {
   }
 }
 
-console.log(getX(a, b, eps));
+console.log('x = ', getX(a, b, eps));
+
+console.log('Глибина рекурсії:', deepth);
