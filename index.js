@@ -14,9 +14,7 @@ function getX(a, b, eps) {
 
   if (resFromM === 0 || b - a < eps) {
     return m;
-  }
-
-  if (resFromM * resFromA < 0) {
+  } else if (resFromM * resFromA < 0) {
     return getX(a, m, eps);
   } else {
     return getX(m, b, eps);
